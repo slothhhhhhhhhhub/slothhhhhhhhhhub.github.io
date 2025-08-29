@@ -3,31 +3,758 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danielle Gonzales: Porfolio</title>
+    <title>Danielle Gonzales | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2E7D32;
+            --primary-light: #4CAF50;
+            --primary-dark: #1B5E20;
+            --dark: #263238;
+            --light: #F5F7F8;
+            --gray: #546E7A;
+            --light-gray: #CFD8DC;
+            --card-bg: #FFFFFF;
+            --section-bg: #F9F9F9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-dark) 100%);
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--light);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-bg {
+            background-color: var(--section-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .img-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 15px;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        .img-caption a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .skill {
+            background-color: var(--light-gray);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Experience Section */
+        .experience-item {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .experience-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .experience-date {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .experience-company {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .experience-description {
+            color: var(--gray);
+        }
+        
+        .experience-description ul {
+            margin-left: 20px;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-img {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary-light), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 50px;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .project-status {
+            background-color: var(--primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .project-description {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tech-item {
+            background-color: var(--light-gray);
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .project-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        
+        .project-links a:hover {
+            color: var(--primary-dark);
+        }
+        
+        /* Leadership Section */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .leadership-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .leadership-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .leadership-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .leadership-org {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .leadership-date {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .leadership-description {
+            color: var(--gray);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--primary);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .contact .section-title h2 {
+            color: white;
+        }
+        
+        .contact .section-title p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .contact-link:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: var(--card-bg);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                gap: 15px;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <nav>
-        <a href="index.html">Danielle Gonzales</a>
-        <a href="about.html">About</a>
-        <a href="contactme.html">Contact Me</a>
-    </nav>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Danielle Gonzales</div>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#leadership">Leadership</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
 
-    <div>
-        <h1>Hello World</h1>
-        <h1>I'm Danielle Gonzales</h1>
-        <h1>& I'm a Software Engineer</h1>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Hi, I'm Danielle Gonzales</h1>
+            <p>Computer Science student at The University of the West Indies with a passion for software development, leadership, and continuous learning.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-outline">Contact Me</a>
+            </div>
+        </div>
+    </section>
 
-        <img id="icon" src="icon.jpg" alt="A stick man waving ">
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Get to know me better - my skills, passions, and what drives me</p>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                   
+                    <img src="icon.jpg" alt="Danielle Gonzales">
+                    
+                    <div class="img-caption">
+                        Photo by <a href="https://www.pinterest.com/KyanSukaRyomen/" target="_blank">KyanSukaRyomen</a> on <a href="https://www.pinterest.com/pin/665969863662539848/" target="_blank">Pinterest</a>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Computer Science Student & Aspiring Software Engineer</h3>
+                    <p>I'm currently pursuing my B.Sc in Computer Science at The University of the West Indies with an expected graduation in October 2026. I have a strong foundation in software engineering principles and a passion for creating impactful solutions.</p>
+                    <p>When I'm not coding, you can find me crocheting, editing videos, watching documentaries, or going for a run. I believe in continuous learning and pushing myself beyond my comfort zone.</p>
+                    
+                    <h3 style="margin-top: 30px;">Skills</h3>
+                    <div class="skills">
+                        <div class="skill">Python</div>
+                        <div class="skill">C++</div>
+                        <div class="skill">Java</div>
+                        <div class="skill">Django</div>
+                        <div class="skill">Data Structures</div>
+                        <div class="skill">OOP</div>
+                        <div class="skill">Software Engineering</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </div>
-        <h2>Brief About Me</h2>
-        <p>I’m someone who enjoys creating practical solutions to everyday problems. I’m interested in IoT, but right now my focus is on building my skills to become a software engineer. I like making things that are simple, useful, and easy for people to use.</p>
+    <!-- Experience Section -->
+    <section id="experience" class="section section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Experience</h2>
+                <p>My professional journey and roles I've undertaken</p>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Student Assistant</div>
+                        <div class="experience-company">The University of the West Indies, Marketing and Communications Department</div>
+                    </div>
+                    <div class="experience-date">May 2025 - Present</div>
+                </div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Served as a university ambassador (Student Champion), engaging with prospective students and families to showcase campus culture and academic opportunities.</li>
+                        <li>Provided peer support and guidance to incoming students, ensuring a smooth transition into university life.</li>
+                        <li>Maintained comprehensive knowledge of university programs, resources, and policies to effectively address inquiries.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Student Usher</div>
+                        <div class="experience-company">The University of the West Indies</div>
+                    </div>
+                    <div class="experience-date">October 2023 - Present</div>
+                </div>
+                <div class="experience-description">
+                    <ul>
+                        <li>Delivered excellent guest service by assisting patrons with inquiries and seating directions.</li>
+                        <li>Collaborated with staff to ensure seamless event operations.</li>
+                        <li>Managed crowd control efficiently, promoting timely seating and minimizing disruptions.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div>
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects</h2>
+                <p>Some of my recent work and ongoing projects</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-title">
+                            <span>Employee Management System</span>
+                            <span class="project-status">Ongoing</span>
+                        </div>
+                        <p class="project-description">An Employee Management System web application for storing employee datat with features to add, update, and delete employee records.</p>
+                        <div class="project-tech">
+                            <div class="tech-item">Django</div>
+                            <div class="tech-item">HTML</div>
+                            <div class="tech-item">Bootstrap</div>
+                        </div>
+                        <div class="project-links">
+                            <a href="#"><i class="fab fa-github"></i> View Code</a>
+                            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- add more projects here in the future -->
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <!-- Leadership Section -->
+    <section id="leadership" class="section section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Leadership</h2>
+                <p>My initiatives and roles where I've led and inspired others</p>
+            </div>
+            
+            <div class="leadership-grid">
+                <div class="leadership-card">
+                    <h3 class="leadership-title">Founder, President, Head-Instructor</h3>
+                    <div class="leadership-org">SJCSF Crochet Club</div>
+                    <div class="leadership-date">October 2022 - May 2023</div>
+                    <p class="leadership-description">Established and led a crochet club, teaching members crochet techniques and organizing community projects.</p>
+                </div>
+                
+                <div class="leadership-card">
+                    <h3 class="leadership-title">Team Captain</h3>
+                    <div class="leadership-org">SJCSF St. Theresa Netball Team</div>
+                    <div class="leadership-date">March 2022 - May 2023</div>
+                    <p class="leadership-description">Led the house netball team, organizing practices, strategizing game plans, and fostering team spirit.</p>
+                </div>
+                
+                <div class="leadership-card">
+                    <h3 class="leadership-title">Co-Founder</h3>
+                    <div class="leadership-org">Danielle Gonzales Good Samaritan Fund (DGGSF)</div>
+                    <div class="leadership-date">February 2013 - Present</div>
+                    <p class="leadership-description">Co-founded a charitable fund aimed at helping those in need within the community.Provided school supplies for students with unfortunate financial situations. </p>
+                </div>
 
-    <button>Contact Me</button>
+                <div class="leadership-card">
+                    <h3 class="leadership-title">Freedom Hall Representative</h3>
+                    <div class="leadership-org">The International Affairs Comittee of the Guild of Students, UWI St. Augustine</div>
+                    <div class="leadership-date">September 2025 - Present</div>
+                    <p class="leadership-description">Serves as a liaison for regional and international students while ensuring they have a positive university experience and access to available resources. </p>
+                </div>
+
+                <div class="leadership-card">
+                    <h3 class="leadership-title">Event Coordinator</h3>
+                    <div class="leadership-org">The UWI Fibre Arts Club</div>
+                    <div class="leadership-date">September 2025 - Present</div>
+                    <p class="leadership-description">A member of the founding executive of the UWI Fibre Arts Club. Responsible for organising activities and helping establish the club through tasks like drafting the constitioun and leading its initiation.  </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Feel free to reach out for collaborations or just to say hello</p>
+            </div>
+            
+            <div class="contact-links">
+                <a href="mailto:gonzales.e.danielle@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> gonzales.e.danielle@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/daniellegonzales1704" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/slothhhhhhhhhhub" target="_blank" class="contact-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="footer-text">© 2023 Danielle Gonzales. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
